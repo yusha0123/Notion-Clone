@@ -33,7 +33,9 @@ const Navbar = () => {
               </Button>
             </SignInButton>
             <SignInButton mode="modal">
-              <Button size={"sm"}>Get Notion Free</Button>
+              <Button size={"sm"} className="hidden md:flex">
+                Get Notion free
+              </Button>
             </SignInButton>
           </>
         )}
