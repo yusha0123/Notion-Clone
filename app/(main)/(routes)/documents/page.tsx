@@ -1,4 +1,5 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
 import { useUser } from "@clerk/clerk-react";
 import { useMutation } from "convex/react";
@@ -10,7 +11,7 @@ import { toast } from "sonner";
 
 const DocumentPage = () => {
   const { user } = useUser();
-  const create = useMutation(api.documents.create);
+  const create = useMutation(api.documents.createDocument);
 
   const createNote = () => {
     const promise = create({ title: "untitled" });
