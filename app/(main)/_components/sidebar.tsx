@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import {
   ChevronsLeft,
   MenuIcon,
+  Plus,
   PlusCircle,
   Search,
   Settings,
@@ -141,6 +142,7 @@ const SideBar = () => {
         </div>
         <div className="mt-4">
           <DocumentList />
+          <Item onClick={handleCreate} icon={Plus} label="Add a page" />
         </div>
         <div
           className="opacity-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize absolute h-full w-1 bg-primary/10 right-0 top-0"
