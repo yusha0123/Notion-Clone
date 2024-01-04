@@ -202,6 +202,27 @@ const removeDocument = mutation({
   },
 });
 
+const searchDocuments = query({
+  handler: async (ctx) => {
+    const userIdentity = await ctx.auth.getUserIdentity();
+
+    if (!userIdentity) {
+      throw new Error("You must be authenticated!");
+    }
+
+    const userId = userIdentity.subject;
+
+    const documents = await ctx.db
+      .query("documents")
+      .withIndex("by_user", (q) => q.eq("userId", userId))
+      .filter((q) => q.eq(q.field("isArchived"), false))
+      .order("desc")
+      .collect();
+
+    return documents;
+  },
+});
+
 export {
   createDocument,
   getSidebar,
@@ -209,4 +230,5 @@ export {
   getTrashedDocuments,
   restoreDocument,
   removeDocument,
+  searchDocuments,
 };

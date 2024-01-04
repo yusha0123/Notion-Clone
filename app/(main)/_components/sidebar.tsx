@@ -25,6 +25,7 @@ import Item from "./item";
 import { toast } from "sonner";
 import DocumentList from "./document-list";
 import TrashBox from "./trash-box";
+import useSearchStore from "@/hooks/use-search";
 
 const SideBar = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -37,6 +38,7 @@ const SideBar = () => {
   const [isResetting, setIsResetting] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(isMobile);
   const create = useMutation(api.documents.createDocument);
+  const search = useSearchStore();
 
   useEffect(() => {
     //if screen turns to mobile mode then collapse the sidebar otherwise reset it to its initial width
@@ -143,7 +145,7 @@ const SideBar = () => {
         </div>
         <div>
           <UserItem />
-          <Item label="Search" icon={Search} isSearch onClick={() => {}} />
+          <Item label="Search" icon={Search} isSearch onClick={search.onOpen} />
           <Item label="Settings" icon={Settings} onClick={() => {}} />
           <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
         </div>
