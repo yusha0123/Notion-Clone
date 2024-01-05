@@ -30,6 +30,7 @@ const DocumentPage = () => {
         height="300"
         width="300"
         alt="Empty"
+        priority
         className="dark:hidden"
       />
       <Image
@@ -37,6 +38,7 @@ const DocumentPage = () => {
         height="300"
         width="300"
         alt="Empty"
+        priority
         className="hidden dark:block"
       />
       <h2 className="text-lg font-medium">

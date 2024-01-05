@@ -9,7 +9,7 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { api } from "@/convex/_generated/api";
-import useSearchStore from "@/hooks/use-search";
+import useSearchStore from "@/hooks/use-search-store";
 import { useUser } from "@clerk/clerk-react";
 import { useQuery } from "convex/react";
 import { File } from "lucide-react";
