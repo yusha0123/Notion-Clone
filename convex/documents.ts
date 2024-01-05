@@ -223,6 +223,27 @@ const searchDocuments = query({
   },
 });
 
+const getDocumentById = query({
+  args: { id: v.id("documents") },
+  handler: async (ctx, args) => {
+    const userIdentity = await ctx.auth.getUserIdentity();
+
+    const document = await ctx.db.get(args.id);
+    if (!document) throw new Error("Document not found!");
+
+    if (document.isPublished && !document.isArchived) {
+      return document;
+    }
+
+    const userId = userIdentity?.subject;
+    if (document.userId !== userId) {
+      throw new Error("Unauthorized access!");
+    }
+
+    return document;
+  },
+});
+
 export {
   createDocument,
   getSidebar,
@@ -231,4 +252,5 @@ export {
   restoreDocument,
   removeDocument,
   searchDocuments,
+  getDocumentById,
 };
