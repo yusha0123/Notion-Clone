@@ -244,6 +244,42 @@ const getDocumentById = query({
   },
 });
 
+const updateDocument = mutation({
+  args: {
+    id: v.id("documents"),
+    title: v.optional(v.string()),
+    content: v.optional(v.string()),
+    coverImage: v.optional(v.string()),
+    icon: v.optional(v.string()),
+    isPublished: v.optional(v.boolean()),
+  },
+  handler: async (ctx, args) => {
+    const userIdentity = await ctx.auth.getUserIdentity();
+    if (!userIdentity) {
+      throw new Error("You must be authenticated!");
+    }
+
+    const userId = userIdentity.subject;
+
+    const { id, ...rest } = args; //since we don't have to update the id of document
+
+    const document = await ctx.db.get(args.id);
+    if (!document) {
+      throw new Error("Document not found!");
+    }
+
+    if (document.userId !== userId) {
+      throw new Error("Action not allowed!");
+    }
+
+    const updatedDocument = await ctx.db.patch(args.id, {
+      ...rest,
+    });
+
+    return updatedDocument;
+  },
+});
+
 export {
   createDocument,
   getSidebar,
@@ -253,4 +289,5 @@ export {
   removeDocument,
   searchDocuments,
   getDocumentById,
+  updateDocument,
 };
