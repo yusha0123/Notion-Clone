@@ -280,6 +280,32 @@ const updateDocument = mutation({
   },
 });
 
+const removeIcon = mutation({
+  args: { id: v.id("documents") },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      throw new Error("You must be authenticated!");
+    }
+
+    const userId = identity.subject;
+
+    const existingDocument = await ctx.db.get(args.id);
+    if (!existingDocument) {
+      throw new Error("Document not found!");
+    }
+
+    if (existingDocument.userId !== userId) {
+      throw new Error("Action not allowed!");
+    }
+
+    const document = await ctx.db.patch(args.id, {
+      icon: undefined,
+    });
+
+    return document;
+  },
+});
 export {
   createDocument,
   getSidebar,
@@ -290,4 +316,5 @@ export {
   searchDocuments,
   getDocumentById,
   updateDocument,
+  removeIcon,
 };

@@ -119,7 +119,7 @@ const Sidebar = () => {
   };
 
   const handleCreate = () => {
-    const promise = create({ title: "untitled" }).then((documentId) =>
+    const promise = create({ title: "Untitled" }).then((documentId) =>
       router.push(`/documents/${documentId}`)
     );
 

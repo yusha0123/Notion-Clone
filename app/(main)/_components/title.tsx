@@ -15,7 +15,7 @@ interface Props {
 const Title = ({ data }: Props) => {
   const update = useMutation(api.documents.updateDocument);
   const [isEditing, setIsEditing] = useState(false);
-  const [title, setTitle] = useState(data.title || "untitled");
+  const [title, setTitle] = useState(data.title || "Untitled");
   const inputRef = useRef<HTMLInputElement>(null);
 
   const enableInput = () => {
@@ -35,7 +35,7 @@ const Title = ({ data }: Props) => {
     setTitle(event.target.value);
     update({
       id: data._id,
-      title: event.target.value || "untitled", //if user attempts to clear the document name then update the title to untitled instead of empty
+      title: event.target.value || "Untitled", //if user attempts to clear the document name then update the title to Untitled instead of empty
     });
   };
 
@@ -72,8 +72,6 @@ const Title = ({ data }: Props) => {
   );
 };
 
-Title.Skeleton = () => {
-  return <Skeleton className="h-6 w-20 rounded-md" />;
-};
+Title.Skeleton = () => <Skeleton className="h-6 w-20 rounded-md" />;
 
 export default Title;
