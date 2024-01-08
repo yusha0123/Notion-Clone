@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ModalProvider from "@/components/providers/modal-provider";
+import { EdgeStoreProvider } from "@/lib/edgestore";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,9 +32,13 @@ export default function RootLayout({
           disableTransitionOnChange
           storageKey="theme-notion"
         >
-          <ConvexClientProvider>{children}</ConvexClientProvider>
-          <ModalProvider />
-          <Toaster position="bottom-center" />
+          <ConvexClientProvider>
+            <EdgeStoreProvider>
+              {children}
+              <ModalProvider />
+              <Toaster position="bottom-center" />
+            </EdgeStoreProvider>
+          </ConvexClientProvider>
         </ThemeProvider>
       </body>
     </html>
