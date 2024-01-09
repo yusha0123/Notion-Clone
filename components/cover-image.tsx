@@ -10,6 +10,7 @@ import useCoverImage from "@/hooks/use-cover-image";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type Props = {
   url?: string;
@@ -38,7 +39,7 @@ const CoverImage = ({ url, preview }: Props) => {
     <div
       className={cn(
         "relative w-full h-[35vh] group",
-        !url && "h-[10vh]",
+        !url && "h-[12.5vh]",
         url && "bg-muted"
       )}
     >
@@ -70,5 +71,7 @@ const CoverImage = ({ url, preview }: Props) => {
     </div>
   );
 };
+
+CoverImage.Skeleton = () => <Skeleton className="w-full h-[12.5vh]" />;
 
 export default CoverImage;
