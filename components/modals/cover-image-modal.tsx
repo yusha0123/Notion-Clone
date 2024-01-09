@@ -11,7 +11,7 @@ import { Id } from "@/convex/_generated/dataModel";
 import { SingleImageDropzone } from "@/components/image-dropzone";
 
 const CoverImageModal = () => {
-  const { isOpen, onClose } = useCoverImage();
+  const { isOpen, onClose, url } = useCoverImage();
   const params = useParams();
   const { edgestore } = useEdgeStore();
   const [file, setFile] = useState<File>();
@@ -31,6 +31,9 @@ const CoverImageModal = () => {
 
       const image = await edgestore.publicFiles.upload({
         file,
+        options: {
+          replaceTargetUrl: url,
+        },
       });
 
       await update({
