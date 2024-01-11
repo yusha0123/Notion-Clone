@@ -65,6 +65,8 @@ const Menu = ({ documentId }: Props) => {
   );
 };
 
-Menu.Skeleton = () => <Skeleton className="h-10 w-10" />;
+Menu.Skeleton = function MenuSkeleton() {
+  return <Skeleton className="h-10 w-10" />;
+};
 
 export default Menu;

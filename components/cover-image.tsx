@@ -44,10 +44,16 @@ const CoverImage = ({ url, preview }: Props) => {
       )}
     >
       {!!url && (
-        <Image src={url} fill alt="cover-image" className="object-cover" />
+        <Image
+          src={url}
+          fill
+          alt="cover-image"
+          className="object-cover"
+          priority
+        />
       )}
       {url && !preview && (
-        <div className="opacity-0 group-hover:opacity-100 absolute bottom-5 right-5 flex items-center gap-x-2">
+        <div className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 absolute bottom-5 right-5 flex items-center gap-x-2">
           <Button
             onClick={() => onReplace(url)}
             className="text-muted-foreground text-xs"
@@ -72,6 +78,8 @@ const CoverImage = ({ url, preview }: Props) => {
   );
 };
 
-CoverImage.Skeleton = () => <Skeleton className="w-full h-[12.5vh]" />;
+CoverImage.Skeleton = function CoverSkeleton() {
+  return <Skeleton className="w-full h-[12.5vh]" />;
+};
 
 export default CoverImage;
