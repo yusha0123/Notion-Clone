@@ -2,7 +2,7 @@
 
 ## Tech Stack
 
-- Next.js 13
+- Next.js 14
 - Clerk Authentication
 - Shadcn/UI
 - Tailwind CSS
