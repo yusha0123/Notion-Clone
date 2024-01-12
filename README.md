@@ -26,7 +26,13 @@
 
 7. 🌐 **Document Publish**: Share your work with others through a document publish functionality.
 
-8. 🌙 **Dark Mode**: Switch to a Dark Mode for a comfortable viewing experience in low-light conditions.
+8. 🗑️ **Trash Documents**: Move unwanted documents to the trash for easy organization.
+
+9. 🔄 **Restore Documents**: Effortlessly restore documents from the trash when needed.
+
+10. 📚 **Infinite Document Children**: Manage an infinite number of document children for comprehensive content organization.
+
+11. 🌙 **Dark Mode**: Switch to a Dark Mode for a comfortable viewing experience in low-light conditions.
 
 ## Usage
 
